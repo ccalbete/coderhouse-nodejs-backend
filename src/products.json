@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Producto 1",
+    "description": "Descripción del producto 1",
+    "price": 100,
+    "thumbnail": "imagen1.jpg",
+    "code": "abc123",
+    "stock": 20,
+    "id": 1
+  },
+  {
+    "title": "Producto 2",
+    "description": "Descripción del producto 2",
+    "price": 150,
+    "thumbnail": "imagen2.jpg",
+    "code": "def456",
+    "stock": 15,
+    "id": 2
+  },
+  {
+    "title": "Producto 3",
+    "description": "Descripción del producto 3",
+    "price": 120,
+    "thumbnail": "imagen3.jpg",
+    "code": "ghi789",
+    "stock": 18,
+    "id": 3
+  },
+  {
+    "title": "Producto 4",
+    "description": "Descripción del producto 4",
+    "price": 80,
+    "thumbnail": "imagen4.jpg",
+    "code": "jkl012",
+    "stock": 25,
+    "id": 4
+  },
+  {
+    "title": "Producto 5",
+    "description": "Descripción del producto 5",
+    "price": 200,
+    "thumbnail": "imagen5.jpg",
+    "code": "mno345",
+    "stock": 12,
+    "id": 5
+  },
+  {
+    "title": "Producto 6",
+    "description": "Descripción del producto 6",
+    "price": 90,
+    "thumbnail": "imagen6.jpg",
+    "code": "pqr678",
+    "stock": 22,
+    "id": 6
+  },
+  {
+    "title": "Producto 7",
+    "description": "Descripción del producto 7",
+    "price": 180,
+    "thumbnail": "imagen7.jpg",
+    "code": "stu901",
+    "stock": 17,
+    "id": 7
+  },
+  {
+    "title": "Producto 8",
+    "description": "Descripción del producto 8",
+    "price": 130,
+    "thumbnail": "imagen8.jpg",
+    "code": "vwx234",
+    "stock": 20,
+    "id": 8
+  },
+  {
+    "title": "Producto 9",
+    "description": "Descripción del producto 9",
+    "price": 160,
+    "thumbnail": "imagen9.jpg",
+    "code": "yz012",
+    "stock": 14,
+    "id": 9
+  },
+  {
+    "title": "Producto 10",
+    "description": "Descripción del producto 10",
+    "price": 110,
+    "thumbnail": "imagen10.jpg",
+    "code": "abc567",
+    "stock": 16,
+    "id": 10
+  }
+]
