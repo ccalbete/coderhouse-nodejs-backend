@@ -10,15 +10,15 @@ app.get('/products', async(req, res) => {
     let products = await productManager.getProducts()
     const limit = req.query.limit ? parseInt(req.query.limit) : products.length;
     products =  products.slice(0, limit);
-    res.send(products)
+    return res.send(products)
 })
 app.get('/products/:pid', async(req, res) => {
     const productId = parseInt(req.params.pid)
     const product = await productManager.getProductById(productId)
     if(product){
-        res.send(product)
+      return  res.send(product)
     }else {
-        res.status(404).send({status:"error", message: "Not found"});
+       return res.status(404).send({status:"error", message: "Not found"});
     }
     
 })
