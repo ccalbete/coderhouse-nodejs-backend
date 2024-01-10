@@ -8,11 +8,12 @@ class ProductManager {
     }
 
   addProduct(productToAdd){
+    try{
       let canBeAdded = true
       let errorMessage = ""
       let currentProducts =  this.getProducts()
-      if(!productToAdd.title || !productToAdd.description || !productToAdd.price || !productToAdd.thumbnail ||
-         !productToAdd.code || !productToAdd.stock){
+      if(!productToAdd.title || !productToAdd.description || !productToAdd.price ||
+         !productToAdd.code || !productToAdd.status || !productToAdd.stock || !productToAdd.category){
           canBeAdded = false
           errorMessage = "Mandatory fields are missing"
       } else {
@@ -37,6 +38,9 @@ class ProductManager {
       } else {
          console.log(errorMessage)
       }
+    }catch(error){
+      throw new Error(error)
+    }
   }
   
   getProducts(){
