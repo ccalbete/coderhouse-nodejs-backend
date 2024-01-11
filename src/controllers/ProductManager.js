@@ -13,7 +13,7 @@ class ProductManager {
       let errorMessage = ""
       let currentProducts =  this.getProducts()
       if(!productToAdd.title || !productToAdd.description || !productToAdd.price ||
-         !productToAdd.code || !productToAdd.status || !productToAdd.stock || !productToAdd.category){
+         !productToAdd.code  || !productToAdd.stock || !productToAdd.category){
           canBeAdded = false
           errorMessage = "Mandatory fields are missing"
       } else {
@@ -31,13 +31,10 @@ class ProductManager {
           } else {
             productToAdd.id = currentProducts[currentProducts.length - 1].id + 1;
           }
-
          currentProducts.push(productToAdd)
          fs.writeFileSync(this.path, JSON.stringify(currentProducts, null, 2))
-        console.log("Product successfully added")
-      } else {
-         console.log(errorMessage)
-      }
+      } 
+      return canBeAdded
     }catch(error){
       throw new Error(error)
     }
@@ -59,108 +56,57 @@ class ProductManager {
       return productFound
   }
 
+  //seguro hay una manera mas eficiente de hacer estas validaciones pero no se me ocurrio
   updateProduct(productId, productAttributes){
-    let productFound = false
+    let productUpdated = false
    let products = this.getProducts()
    for(let i=0; i < products.length; i++){
     if(products[i].id === productId) {
-      productAttributes.id = productId
-      products[i] = productAttributes
-      productFound = true
+     if(productAttributes.title){
+       products[i].title = productAttributes.title
+     }
+     if(productAttributes.description){
+       products[i].description = productAttributes.description
+     }
+     if(productAttributes.code){
+       products[i].code = productAttributes.code
+     }
+     if(productAttributes.status){
+       products[i].status = productAttributes.status
+     }
+     if(productAttributes.price){
+       products[i].price = productAttributes.price
+     }
+     if(productAttributes.thumbnail){
+       products[i].thumbnail = productAttributes.thumbnail
+     }
+     if(productAttributes.stock){
+       products[i].stock = productAttributes.stock
+     }
+     if(productAttributes.category){
+       products[i].category = productAttributes.category
+     }
+      fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
+      productUpdated = true
       break
     }
    }
-   if(productFound){
-    fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
-    console.log(`Product ${productId} successfully updated`)
-}else{
-  console.log("Not found")
-}
+   return productUpdated
   }
 
   deleteProduct(id){
-    let productFound = false
+    let productDeleted = false
     let products = this.getProducts()
     for(let i=0; i < products.length; i++){
     if(products[i].id === id) {
       // delete product on index i
       products.splice(i, 1)
-      productFound = true
+      fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
+      productDeleted = true
       break
     }
   }
-  if(productFound){
-    fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
-    console.log(`Product successfully deleted`)
-  } else {
-    console.log("Not found")
-  }
-    
+  return productDeleted
   }
 } 
 module.exports = ProductManager;
-//module.exports.getProducts = getProducts();
-
-// pruebas
-/* 
-console.log('create the productManager class instance with the path ./products.json')
-const productManager = new ProductManager('./products.json')
-
-console.log('\nget the empty product array') 
-console.log(productManager.getProducts())
-
-console.log('\nadd a product') 
-productManager.addProduct(
-    {
-        title: "producto prueba",
-        description: "Este es un producto prueba",
-        price: 200,
-        thumbnail: "Sin imagen",
-        code: "abc123",
-        stock: 25
-    }
-)
-
-console.log('\nshow the product added')
-console.log(productManager.getProducts())
-
-console.log('\nadd another product')
-productManager.addProduct(
-    {
-        title: "producto prueba",
-        description: "Este es un producto prueba",
-        price: 200,
-        thumbnail: "Sin imagen",
-        code: "abc1234",
-        stock: 28
-    }
-)
-console.log('\nshow all products')
-console.log(productManager.getProducts())
-
-console.log('\nget product with id 1')
-productManager.getProductById(1)
-
-console.log('\nget product with id 6')
-productManager.getProductById(6)
-
-console.log('\nupdate description for product 1')
-productManager.updateProduct(1, {
-  title: 'producto prueba',
-  description: 'Esta es una nueva descripcion',
-  price: 200,
-  thumbnail: 'Sin imagen',
-  code: 'abc123',
-  stock: 25
-}); 
-console.log('\nshow product updated')
-productManager.getProductById(2)
-
-console.log('\ndelete the product with id 2')
-productManager.deleteProduct(2)
-console.log('show all products')
-console.log(productManager.getProducts())
-
-console.log('\ndelete product with id 6')
-productManager.deleteProduct(6)
- */

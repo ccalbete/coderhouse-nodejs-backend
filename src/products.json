@@ -18,12 +18,7 @@
     "id": 2
   },
   {
-    "title": "Producto 3",
-    "description": "Descripción del producto 3",
-    "price": 120,
-    "thumbnail": "imagen3.jpg",
-    "code": "ghi789",
-    "stock": 18,
+    "title": "Produc3333333d",
     "id": 3
   },
   {
@@ -72,21 +67,16 @@
     "id": 8
   },
   {
-    "title": "Producto 9",
-    "description": "Descripción del producto 9",
-    "price": 160,
-    "thumbnail": "imagen9.jpg",
-    "code": "yz012",
-    "stock": 14,
-    "id": 9
-  },
-  {
-    "title": "Producto 10",
+    "title": "Produc3333333d",
     "description": "Descripción del producto 10",
-    "price": 110,
+    "price": "Produc3333333d",
     "thumbnail": "imagen10.jpg",
     "code": "abc567",
     "stock": 16,
     "id": 10
+  },
+  {
+    "title": "Producto prueba323333333d",
+    "id": 11
   }
 ]

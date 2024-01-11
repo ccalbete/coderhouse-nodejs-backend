@@ -23,17 +23,46 @@ router.get('/:pid', async(req, res) => {
 
 router.post('/', async(req, res) => {
     try{
-    const { title, description, code, price, status=true, stock, category, thumbnails } = req.body;
-    console.log('req.body'+req.body.title)
-    if(title && description && code && price && stock && category){
-       await productManager.addProduct( { title, description, code, price, status, stock, category, thumbnails })
-       res.status(201).send()
-    }else{
-        return res.status(400).json({ success: false, message: "Required data is missing (title, description, code, price, status, stock, category)" });
+        const { title, description, code, price, status=true, stock, category, thumbnails } = req.body;
+        const created =  await productManager.addProduct( { title, description, code, price, status, stock, category, thumbnails })
+        if(created){
+            res.status(201).send() 
+        } else{
+            return res.status(400).json({ success: false, message: "Required data is missing (title, description, code, price, status, stock, category)" });
+        }
+    } catch(error){
+        return next(error);
     }
+})
+
+router.put('/:pid', async(req, res) => {
+    try{
+        const id = parseInt(req.params.pid)
+        const productAttributes = req.body
+        const updated = await productManager.updateProduct(id, productAttributes)
+        if(updated){
+            res.status(200).send()
+        } else {
+            return res.status(400).json({ success: false, message: "Product not found" });
+        }
 } catch(error){
     return next(error);
 }
 })
+
+router.delete('/:pid', async(req, res) => {
+    try{
+        const id = parseInt(req.params.pid)
+        const deleted = await productManager.deleteProduct(id)
+        if(deleted){
+            res.status(200).send()
+        } else {
+            return res.status(400).json({ success: false, message: "Product not found" });
+        }
+} catch(error){
+    return next(error);
+}
+})
+
 
 module.exports = router;
