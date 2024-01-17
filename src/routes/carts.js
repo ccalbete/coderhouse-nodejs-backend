@@ -19,7 +19,12 @@ router.post('/', async(req, res) => {
 
 router.post('/:cid/product/:pid', async(req, res) => {
     try{
-await cartsManager.addProductToACart(parseInt(req.params.cid), parseInt(req.params.pid))
+const added = await cartsManager.addProductToACart(parseInt(req.params.cid), parseInt(req.params.pid))
+if (added){
+    res.status(200).send()
+} else {
+    return res.status(400).json({ success: false, message: "Product not added" }); 
+}
     }catch(error){
         console.error(error)
     }

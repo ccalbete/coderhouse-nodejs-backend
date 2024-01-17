@@ -33,6 +33,7 @@ class CartsManager{
  //solo funciona encapsulando todo el carts.json en un array [] y despues de correr una vez con los corchetes, se borran los corchetes
   async addProductToACart(cartId, productId){
       const cart = await this.getCartById(cartId)
+      let added = false
       let productFound = false
       if(!cart){
          return console.error('Cart not found')
@@ -41,14 +42,17 @@ class CartsManager{
         for (let i = 0; i < cart.products.length; i++) {
             if (cart.products[i].id == productId) {
                 cart.products[i].quantity++ 
+                added = true
                 productFound = cart.products[i]
                 break
             }
         }}else if(!productFound){
-            cart.products.push([{product: productId, quantity: 1}])
+            cart.products.push({product: productId, quantity: 1})
+            added = true
         }
         }
         fs.writeFileSync(this.path, JSON.stringify(cart, null, 2));
+        return added
 }
   async getCartById(id){
     let cartFound = false
