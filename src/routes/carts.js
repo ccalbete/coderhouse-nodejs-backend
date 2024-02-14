@@ -1,11 +1,11 @@
 const express = require("express"); 
 const router = express.Router(); 
 const CartsManager = require('../controllers/CartsManager')
-const cartsManager = new CartsManager('../carts.json')
+const cartsManager = new CartsManager('./carts.json')
 
 router.post('/', async(req, res) => {
     try{
-        const created =  await cartsManager.addCart(req.body)
+        const created =  await cartsManager.addCart()
         if(created){
             res.status(201).send() 
         } else{
