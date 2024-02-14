@@ -29,10 +29,7 @@ const httpServer = app.listen(PORT, () => {
     console.log('running server in port 8080')
 })
 
-mongoose.connect('mongodb+srv://ccalbete10:coderhouse@coderhousecluster.wy4vbrw.mongodb.net/?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect('mongodb+srv://ccalbete10:coderhouse@coderhousecluster.wy4vbrw.mongodb.net/?retryWrites=true&w=majority', {});
 const db = mongoose.connection;
 db.on('error', (error) => {
     console.error('Error de conexión a MongoDB:', error);
